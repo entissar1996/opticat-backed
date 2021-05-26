@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config=require('../config/db_connect');
 
-const DB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/myapp-api';
+const DB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/apiback';
 
 function connect() {
   return new Promise((resolve, reject) => {

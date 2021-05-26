@@ -79,7 +79,7 @@ router.get('/', helpers.validateUser, helpers.isAdmin, async function (req, res,
  * GET /user/:id
  */
 
-router.get('/user/:id', helpers.validateUser, helpers.isGranted, async function (req, res,next) {
+router.get('/user/:id', helpers.validateUser, async function (req, res,next) {
   let id = req.params.id;
   try {
     let response = await userService.getUserById(id);
@@ -95,7 +95,7 @@ router.get('/user/:id', helpers.validateUser, helpers.isGranted, async function 
 
 // Upadate User Info
 // PUT /update/:id
-router.put('/update/:id', helpers.validateUser, helpers.isGranted, async function (req, res,next) {
+router.put('/update/:id', helpers.validateUser, async function (req, res,next) {
   if (
     !req.body.hasOwnProperty('nom') &&
     !req.body.hasOwnProperty('telephone') &&
@@ -128,7 +128,7 @@ router.put('/update/:id', helpers.validateUser, helpers.isGranted, async functio
 
 // Upadate User Role "GEST | ADMIN | USER | SUPERVISOR"
 // PUT /update/role/:id
-router.put('/update/role/:id', helpers.validateUser, helpers.isGranted, helpers.isAdmin, async function (req, res,next) {
+router.put('/update/role/:id', helpers.validateUser, helpers.isSupervisor, async function (req, res,next) {
   let id = req.params.id;
   let role;
   if(!req.body.hasOwnProperty('new_role')){
@@ -154,40 +154,9 @@ router.put('/update/role/:id', helpers.validateUser, helpers.isGranted, helpers.
 
 });
 
-// Grant access to user ie isGranted=true and role="User"
-// PUT /grant-access/:id
-router.put('/grant-access/:id', helpers.validateUser, helpers.isGranted, helpers.isAdmin, async function (req, res,ext) {
-  let id = req.params.id;
-  try {
-    let response = await userService.grantAccessToUser(id);
-   
-    if (response) {
-      res.status(200).json(response);
-    }
 
-  } catch (error) {
-    next(error)
-  }
-});
 
-// Assign a given User to a given Customer
-// and update cross reference in bouth entity
-// PUT /assign-user-customer 
-// body {userId,customerId}
-router.put('/assign-user-customer', helpers.validateUser, helpers.isGranted, helpers.isAdmin, async function (req, res,ext) {
-  let userId = req.body.userId;
-  let customerId = req.body.customerId;
-  try {
-    let response = await userService.assignUserToCustomer(Customer)(userId,customerId);
-   
-    if (response) {
-      res.status(200).json(response);
-    }
 
-  } catch (error) {
-    next(error)
-  }
-});
 
 // Delete User
 // DELETE /delete/:id
