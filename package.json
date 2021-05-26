@@ -1,0 +1,37 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www -e *"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.16.4",
+    "express-validator": "^6.11.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.11",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.7"
+  },
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nourhen12/atelier-blog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nourhen12/atelier-blog/issues"
+  },
+  "homepage": "https://github.com/nourhen12/atelier-blog#readme",
+  "description": ""
+}
