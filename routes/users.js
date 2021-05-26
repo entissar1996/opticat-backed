@@ -9,7 +9,7 @@ const {
 const userService = require('../services/user.service')(User);
 
 
-// @ts-check
+
 // POST /register
 router.post('/register', [check('email').isEmail()], async function (req, res, next) {
     const errors = validationResult(req);

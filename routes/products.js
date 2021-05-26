@@ -1,12 +1,14 @@
  const router=require('express').Router();
 const  productService= require('../services/product.service')();
 const  categoryService= require('../services/category.service')();
+const validateUser=require('../helpers/user-validation');
 
  router.get('/',async function(req,res){
     let result=await productService.getAllProducts();
     res.json(result);
  })
 
+ //,validateUser.validateUser,validateUser.isGranted,validateUser.isAdmin
  router.post('/',async function(req,res){
    
      let result = await productService.addProduct(req.body);

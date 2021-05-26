@@ -5,17 +5,12 @@ const logger = require('morgan');
 const cors = require('cors');
 
 
-const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter =require('./routes/products');
 const commandRouter =require('./routes/command');
 const categoryRouter =require('./routes/category');
 
-mongoose.connect('mongodb://localhost:27017/apiback', 
-{useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>console.log("connexion a mongodb réussie"))
-.catch(()=>console.log("echec de connexion a mongodb"));
 
 var app = express();
 

@@ -42,9 +42,6 @@ const UserSchema = new Schema({
     ville: {
         type: String
     },
-    datenaissance: {
-        type: Date
-    },
     role: {
         type: String,
         required: true,
