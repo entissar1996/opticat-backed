@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router=require('express').Router();
 const User = require('../db/models/user-schema');
 const helpers = require('../helpers/user-validation');
 const {
@@ -7,8 +6,6 @@ const {
   validationResult
 } = require('express-validator');
 const userService = require('../services/user.service')(User);
-
-
 
 // POST /register
 router.post('/register', [check('email').isEmail()], async function (req, res, next) {
@@ -20,7 +17,7 @@ router.post('/register', [check('email').isEmail()], async function (req, res, n
         payload: null
       });
     } else {
-      let {
+      let { 
         ...user
       } = req.body
       try {

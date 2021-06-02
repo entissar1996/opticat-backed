@@ -128,13 +128,13 @@ const updateUser = (User) => async (id, user) => {
         payload: await User.findById(id),
       };
     }
-  } catch (error) {
-    return {
-      status: "error",
-      message: "update user is failed",
-      payload: error,
-    };
-  }
+    } catch (error) {
+      return {
+        status: "error",
+        message: "update user is failed",
+        payload: error,
+      };
+    }
 };
 
 const updateUserRole = (User) => async (id, role) => {
