@@ -6,11 +6,6 @@ const  categoryService= require('../services/category.service')();
     res.json(result);
  })
 
- router.get('/products/:id',async function(req,res){
-  let result=await categoryService.getCategoryProducts(req.params.id);
-  res.json(result);
-})
-
  router.post('/',async function(req,res){
    
      let result = await categoryService.addCategory(req.body);
@@ -25,7 +20,7 @@ const  categoryService= require('../services/category.service')();
 
  })
 
- router.put('/update/:id', async function(req,res)
+ router.put('/:id', async function(req,res)
  { 
   let response = await categoryService.updateCategory(req.params.id,req.body);
    res.json(response);
