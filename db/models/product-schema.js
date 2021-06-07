@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     label: { 
       type: String,
-      //required: [true, 'label est obligatoire!!']
+      required: [true, 'label est obligatoire!!']
     },
     description: String,
     price:   {
@@ -19,11 +19,18 @@ const productSchema = new Schema({
       type: Number, 
       //required: [true, 'quantity est obligatoire!!']
     },
-    photo: String,
+    photo: {
+      type: String,
+  },
+  
+    couleur:String,
+    pricepromo:String,
     categories:[{ 
       type: mongoose.Types.ObjectId,
       ref: 'Category'
     }],
+    uploaded: { type: Date, default: Date.now },
+
   });
 
   module.exports = new mongoose.model('Product', productSchema);

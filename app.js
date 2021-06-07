@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const cors = require('cors');
+const multer  = require('multer')
 
 
 const indexRouter = require('./routes/index');
@@ -10,25 +11,33 @@ const usersRouter = require('./routes/users');
 const productRouter =require('./routes/products');
 const commandRouter =require('./routes/command');
 const categoryRouter =require('./routes/category');
+const pictureRouter =require('./routes/picture');
+
+const upload = multer({ dest: 'uploads/' })
 
 
-var app = express();
 
-
-
+// setting up express app
+const app = express();
 app.use(cors());
-
 app.use(logger('dev'));
-
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
+
+// api endpoint
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productRouter);
 app.use('/command', commandRouter); 
 app.use('/category', categoryRouter);
+app.use('/uploads', pictureRouter);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,9 +1,11 @@
  const router=require('express').Router();
  const productService= require('../services/product.service')();
-
-
-router.post('/',async function(req, res, next){
+ var multer  = require('multer');
+ const Product=require ('../db/models/product-schema')
+ 
+ router.post('/',async function(req, res, next){
   let {...product} = req.body
+
     let response = await productService.addProduct(product);
     res.json(response);
 })

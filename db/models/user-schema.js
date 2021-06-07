@@ -49,10 +49,7 @@ const UserSchema = new Schema({
     },
   // maison:[{type:Schema.Types.ObjectId,ref:"Maison"}],
 
-    isGranted: {
-        type: Boolean,
-        default: false
-    }
+  
 }, {
     timestamps: true
 });

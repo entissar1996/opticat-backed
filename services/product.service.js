@@ -2,6 +2,7 @@ const Product= require('../db/models/product-schema');
 const Category= require('../db/models/category-schema');
 
 async function addProduct(product) {
+
     try {
         let NewProduct = await Product.create(product);
         await addCategoryToProduct(NewProduct);
@@ -29,6 +30,7 @@ async function addCategoryToProduct(product)
         { $push: { products: product._id } }
         );
 }
+
 
 
 async function getAllProducts() {

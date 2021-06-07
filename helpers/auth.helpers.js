@@ -8,7 +8,6 @@ function getToken(user) {
         id: user._id,
         email: user.email,
         role: user.role,
-        isGranted: user.isGranted
     }, secretKey, {
         expiresIn: '365d'
     });
