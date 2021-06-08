@@ -21,6 +21,8 @@ const productSchema = new Schema({
     },
     photo: {
       type: String,
+      default:"/assets/defaut.png",
+      required:true
   },
   
     couleur:String,
