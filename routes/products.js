@@ -2,10 +2,10 @@
  const productService= require('../services/product.service')();
  var multer  = require('multer');
  const Product=require ('../db/models/product-schema')
+ const photo=require('../routes/picture')
  
  router.post('/',async function(req, res, next){
   let {...product} = req.body
-
     let response = await productService.addProduct(product);
     res.json(response);
 })
@@ -37,6 +37,7 @@
   let {...product} = req.body
   let response = await productService.updateProduct(id,product);
    res.json(response);
+   
 
  })
  router.delete('/:id', async function(req,res)

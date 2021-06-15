@@ -1,6 +1,5 @@
 const Product= require('../db/models/product-schema');
 const Category= require('../db/models/category-schema');
-
 async function addProduct(product) {
 
     try {
@@ -137,6 +136,7 @@ async function DelateCategoryToProduct(product)
         { $pull : { products: product._id } }
         );
 }
+//async function uploadPhoto()
 module.exports =() => {
     return (
         {

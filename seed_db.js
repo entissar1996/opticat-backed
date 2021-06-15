@@ -24,13 +24,13 @@ function close() {
 
 async function seedDb(){
     let admin={
-        fullusername: "ADMIN",
-        email: "@idoormedia.de",
-        password: "123456789",
-        city:"Erlangen",
+        nom: "BENRAJEB",
+        prenom: "Entissar",
+        email: "entissarbenrajeb@gmail.com",
+        password: "entissar",
+        ville:"mahdia",
         role:"ADMIN",
-        isGranted:true,
-        phone: "+216 22 45 79 16"
+        telephone: "+216 22 45 79 16"
     }
 
     try {

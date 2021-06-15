@@ -10,6 +10,8 @@ const productSchema = new Schema({
       required: [true, 'label est obligatoire!!']
     },
     description: String,
+    brand: String,
+
     price:   {
        type: Number, 
        //required: [true, 'price est obligatoire!!'], 
@@ -21,7 +23,7 @@ const productSchema = new Schema({
     },
     photo: {
       type: String,
-      default:"/assets/defaut.png",
+      default:"default.png",
       required:true
   },
   
