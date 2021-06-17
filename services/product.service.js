@@ -1,12 +1,16 @@
 const Product= require('../db/models/product-schema');
 const Category= require('../db/models/category-schema');
+const Marque = require('../db/models/marque-schema');
+
 async function addProduct(product) {
 
     try {
         let NewProduct = await Product.create(product);
+
         await addCategoryToProduct(NewProduct);
-        //await Category.updateMany({ '_id': NewProduct.categories }, { $push: { products: NewProduct._id } });
-       return ({    
+        await addMarqueToProduct(NewProduct);
+        
+        return ({    
                 status: "success",
                 message: "Product added succssfullty", 
                 payload: NewProduct
@@ -29,12 +33,19 @@ async function addCategoryToProduct(product)
         { $push: { products: product._id } }
         );
 }
+async function addMarqueToProduct(product)
+{
+    await Marque.updateMany(
+        { '_id':product.marque }, 
+        { $push: { products: product._id } }
+        );
+}
 
 
 
 async function getAllProducts() {
     try {
-        let listeProducts = await Product.find()
+        let listeProducts = await Product.find();
         //.populate("categories", "-_id -__v -products");
         return ({
             status: "success",
@@ -53,20 +64,23 @@ async function getAllProducts() {
 
 
 async function getOneProduct(id){
-   try {
-        let product = await Product.findById({_id:id}).populate("categories", "-_id -__v -products");
+    try {
+        let listeProducts = await Product.findById(id)
+        //.populate("categories", "-_id -__v -products");
         return ({
             status: "success",
-            message: `Get product with _id=${id}`,
-            payload: product 
+            message: "All Products", 
+            payload: listeProducts 
         });
+
     } catch (error) {
-        return {
+        return ({
             status: "error",
-            message: `Error to get product with _id=${id}`,
-            payload: error,
-          };
+            message: "Get All Productns Fail", 
+            payload: null
+        });
     }
+
 }
 
 async function updateProduct(id,product) {
@@ -74,9 +88,12 @@ async function updateProduct(id,product) {
     try {
         let oldproduct = await Product.findByIdAndUpdate(id, product);
         let updatedProduct = await Product.findById(id);
+        //update product to catégorie
         await DelateCategoryToProduct(oldproduct);
         await addCategoryToProduct(updatedProduct);
-       
+       //update product to marque
+       await DelateMarqueToProduct(oldproduct);
+       await addMarqueToProduct(updatedProduct);
        // await Category.updateMany({ '_id': updatedProduct.categories }, { $addToSet: { products: updatedProduct._id } });
      
         return ({
@@ -94,16 +111,7 @@ async function updateProduct(id,product) {
     }
 
 }
-async function updateCategoryToProduct(newproduct,oldproduct)
-{
-let newCategory=newproduct.categories;
-await Category.updateMany(
-    { '_id': oldproduct.categories }, 
-    { $pull: { products: product._id } });
-await Category.updateMany(
-    { '_id': newCategory }, 
-    { $pull: { products: product._id } });
-}
+
 
 
  
@@ -112,9 +120,12 @@ await Category.updateMany(
 async function DeleteProduct(id) {
   
     try {
+        let oldProduct = await Product.findById(id);
+        console.log(oldProduct )
         let deletedProduct = await Product.deleteOne({_id:id});
         //await Category.updateMany({ '_id': deletedProduct.categories }, { $pull: { products: deletedProduct._id } });
-        await DelateCategoryToProduct(deletedProduct)
+        await DelateCategoryToProduct(oldProduct);
+        await DelateMarqueToProduct(oldProduct);
         return ({ 
             status: "success",
             message: `User with _id=${id} has deleted`,
@@ -131,8 +142,16 @@ async function DeleteProduct(id) {
 }
 async function DelateCategoryToProduct(product)
 {
+
     await Category.updateMany(
         { '_id':product.categories }, 
+        { $pull : { products: product._id } }
+        );
+}
+async function DelateMarqueToProduct(product)
+{
+    await Marque.updateMany(
+        { '_id':product.marque }, 
         { $pull : { products: product._id } }
         );
 }

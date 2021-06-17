@@ -10,8 +10,12 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter =require('./routes/products');
 const commandRouter =require('./routes/command');
+const marqueRouter =require('./routes/marque');
+
 const categoryRouter =require('./routes/category');
 const pictureRouter =require('./routes/picture');
+const avatarRouter =require('./routes/uploadsavatar');
+const picturemarqueRouter =require('./routes/picturemarque');
 
 const upload = multer({ dest: 'uploads/' })
 
@@ -32,8 +36,17 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productRouter);
 app.use('/command', commandRouter); 
+app.use('/marque', marqueRouter); 
 app.use('/category', categoryRouter);
 app.use('/uploads', pictureRouter);
+app.use('/uploadsavatar', avatarRouter);
+app.use('/uploadsmarque', picturemarqueRouter);
+
+app.use('/uploadsmarque', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/uploadsavatar', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));

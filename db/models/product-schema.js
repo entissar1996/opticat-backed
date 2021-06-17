@@ -23,12 +23,16 @@ const productSchema = new Schema({
     },
     photo: {
       type: String,
-      default:"default.png",
+      default:"upload.png",
       required:true
   },
   
     couleur:String,
     pricepromo:String,
+    marque:{ 
+      type: mongoose.Types.ObjectId, 
+      ref: 'Marque' 
+  },
     categories:[{ 
       type: mongoose.Types.ObjectId,
       ref: 'Category'

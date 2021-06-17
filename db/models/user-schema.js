@@ -47,9 +47,12 @@ const UserSchema = new Schema({
         required: true,
         default: 'GUEST'
     },
-  // maison:[{type:Schema.Types.ObjectId,ref:"Maison"}],
+    avatar: {
+        type: String,
+        required: true,
+        default: 'avatardefault.png'
+    },
 
-  
 }, {
     timestamps: true
 });
