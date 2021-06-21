@@ -57,7 +57,6 @@ module.exports = {
     },
     roles: {
         admin: "ADMIN",
-        supervisor: "SUPERVISOR",
         user: "USER"
     }
 }

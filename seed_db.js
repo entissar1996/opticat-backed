@@ -24,13 +24,14 @@ function close() {
 
 async function seedDb(){
     let admin={
-        nom: "BENRAJEB",
-        prenom: "Entissar",
+        firstname: "BENRAJEB",
+        lastname: "Entissar",
         email: "entissarbenrajeb@gmail.com",
         password: "entissar",
         ville:"mahdia",
+        adresse:"hiboun",
         role:"ADMIN",
-        telephone: "+216 22 45 79 16"
+        phone: "+216 22 45 79 16"
     }
 
     try {

@@ -36,7 +36,7 @@ async function addCategoryToProduct(product)
 async function addMarqueToProduct(product)
 {
     await Marque.updateMany(
-        { '_id':product.marque }, 
+        { '_id':product.brand }, 
         { $push: { products: product._id } }
         );
 }
@@ -151,7 +151,7 @@ async function DelateCategoryToProduct(product)
 async function DelateMarqueToProduct(product)
 {
     await Marque.updateMany(
-        { '_id':product.marque }, 
+        { '_id':product.brand }, 
         { $pull : { products: product._id } }
         );
 }

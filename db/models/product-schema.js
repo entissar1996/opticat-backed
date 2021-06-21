@@ -9,33 +9,43 @@ const productSchema = new Schema({
       type: String,
       required: [true, 'label est obligatoire!!']
     },
-    description: String,
-    brand: String,
-
-    price:   {
+    description: { 
+      type: String,
+      required: [true, 'description est obligatoire!!']
+    },
+    brand:{ 
+      type: mongoose.Types.ObjectId, 
+      ref: 'Marque' ,
+      //required: [true, 'quantity est obligatoire!!']
+  },
+    price:{
        type: Number, 
-       //required: [true, 'price est obligatoire!!'], 
+      // required: [true, 'price est obligatoire!!'], 
        min: 0 
-      },
+    },
     quantity:{ 
       type: Number, 
-      //required: [true, 'quantity est obligatoire!!']
+     //required: [true, 'quantity est obligatoire!!']
     },
     photo: {
       type: String,
       default:"upload.png",
       required:true
-  },
-  
-    couleur:String,
-    pricepromo:String,
-    marque:{ 
-      type: mongoose.Types.ObjectId, 
-      ref: 'Marque' 
-  },
+    },
+    color:{
+      String,
+     // required: [true, 'couleur est obligatoire!!']
+    },
+    pricepromo:{
+      type:Number,
+      //required: [true, 'price promo est obligatoire!!']
+    },
+    
     categories:[{ 
       type: mongoose.Types.ObjectId,
-      ref: 'Category'
+      ref: 'Category',
+     // required: [true, 'categories est obligatoire!!']
+
     }],
     uploaded: { type: Date, default: Date.now },
 

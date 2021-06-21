@@ -96,11 +96,11 @@ router.put('/update/:id', helpers.validateUser, async function (req, res,next) {
   if (
     !req.body.hasOwnProperty('nom') &&
     !req.body.hasOwnProperty('telephone') &&
-    !req.body.hasOwnProperty('datenaissance') &&
+    !req.body.hasOwnProperty('adresse') &&
     !req.body.hasOwnProperty('ville')) {
     res.status(422).json({
       status: "error",
-      message: 'il faut taper nom ,ville,telephone,datenaissance',
+      message: 'il faut taper nom ,ville,telephone,adresse',
       payload: null
     });
   } else {
@@ -123,9 +123,9 @@ router.put('/update/:id', helpers.validateUser, async function (req, res,next) {
 
 
 
-// Upadate User Role "GEST | ADMIN | USER | SUPERVISOR"
+// Upadate User Role " ADMIN | USER "
 // PUT /update/role/:id
-router.put('/update/role/:id', helpers.validateUser, helpers.isSupervisor, async function (req, res,next) {
+router.put('/update/role/:id', helpers.validateUser, helpers.isAdmin, async function (req, res,next) {
   let id = req.params.id;
   let role;
   if(!req.body.hasOwnProperty('new_role')){

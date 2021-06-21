@@ -12,12 +12,12 @@ const Schema = mongoose.Schema;
  * User Schema
  */
 const UserSchema = new Schema({
-    prenom: {
+    firstname: {
         type: String,
         trim: true,
         required: [true, 'prenom est obligatoire!!'],
     },
-    nom: {
+    lastname: {
         type: String,
         trim: true,
         required: [true, 'nom est obligatoire!!'],
@@ -36,10 +36,13 @@ const UserSchema = new Schema({
         trim: true,
         required: [true, 'mot de passe et obligatoire']
     },
-   telephone: {
+   phone: {
         type: String
     },
     ville: {
+        type: String
+    },
+    adresse: {
         type: String
     },
     role: {
