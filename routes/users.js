@@ -125,7 +125,7 @@ router.put('/update/:id', helpers.validateUser, async function (req, res,next) {
 
 // Upadate User Role " ADMIN | USER "
 // PUT /update/role/:id
-router.put('/update/role/:id', helpers.validateUser, helpers.isAdmin, async function (req, res,next) {
+router.put('/update/role/:id', helpers.validateUser, async function (req, res,next) {
   let id = req.params.id;
   let role;
   if(!req.body.hasOwnProperty('new_role')){

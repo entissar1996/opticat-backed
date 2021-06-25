@@ -45,7 +45,7 @@ async function addMarqueToProduct(product)
 
 async function getAllProducts() {
     try {
-        let listeProducts = await Product.find();
+        let listeProducts = await Product.find().populate("brand");
         //.populate("categories", "-_id -__v -products");
         return ({
             status: "success",
