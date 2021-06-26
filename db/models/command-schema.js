@@ -1,40 +1,15 @@
 const mongoose = require('mongoose');
 const CommandSchema = mongoose.Schema({
-    nom: {
-        type: String,
-        trim: true,
-        required: [true, 'name is required'],
+    idPanier: {
+        type: mongoose.Types.ObjectId, 
+        ref: 'Panier'  
     },
-    prenom:  {
-        type: String,
-        trim: true,
-        required: [true, 'prenom is required'],
+    prixCommand:  {
+        type: Number, 
+       required: [true, 'price est obligatoire!!'], 
+       min: 0 
     },
-    mail: {
-        type: String,
-        trim: true,
-        required: [true, 'mail is required'],
-    },
-    telephone:  {
-        type: String,
-        trim: true,
-        required: [true, 'phone is required'],
-    },
-    ville:  {
-        type: String,
-        trim: true,
-        required: [true, 'ville is required'],
-    },
-    adresse: {
-        type: String,
-        trim: true,
-        required: [true, 'adresse is required'],
-    },
-    quatité:Number,
-    couleur:String,
-    PrixTotal:Number
-
-
+    
 
 });
 
