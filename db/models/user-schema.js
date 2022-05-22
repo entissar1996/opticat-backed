@@ -55,6 +55,10 @@ const UserSchema = new Schema({
         required: true,
         default: 'avatardefault.png'
     },
+    paniers:[{ 
+        type: mongoose.Types.ObjectId, 
+        ref: 'Panier' 
+    }],
 
 }, {
     timestamps: true

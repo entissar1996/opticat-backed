@@ -6,11 +6,9 @@ const PanierSchema = mongoose.Schema({
     },
     color:  {
         type: Array, 
-      required: [true, 'color est obligatoire!!']
     },
     quantity:  {
         type: Number, 
-       required: [true, 'Quantity est obligatoire!!'], 
        min: 1
     },
     idProduct: {
@@ -33,7 +31,6 @@ const PanierSchema = mongoose.Schema({
     },
     prixTotal:  {
         type: Number, 
-       required: [true, 'price est obligatoire!!'], 
        min: 0 
     },
     

@@ -1,8 +1,9 @@
 const router=require('express').Router();
 const  panierService= require('../services/panier.service')();
 
- router.get('/',async function(req,res){
-    let result=await panierService.getAllPanier();
+ router.get('/:id',async function(req,res){
+   const userId=req.params.id;
+    let result=await panierService.getAllPanier(userId);
     res.json(result);
  })
 

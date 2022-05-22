@@ -59,7 +59,7 @@ router.post('/authenticate', [check('email').isEmail()], async function (req, re
 
 // @ts-check
 // GET / get All users
-router.get('/', helpers.validateUser, helpers.isAdmin, async function (req, res, next) {
+router.get('/',  async function (req, res, next) {
   try {
     let response = await userService.getAllUsers();
     if (response) {
@@ -76,7 +76,7 @@ router.get('/', helpers.validateUser, helpers.isAdmin, async function (req, res,
  * GET /user/:id
  */
 
-router.get('/user/:id', helpers.validateUser, async function (req, res,next) {
+router.get('/user/:id', async function (req, res,next) {
   let id = req.params.id;
   try {
     let response = await userService.getUserById(id);

@@ -1,4 +1,5 @@
 const Panier = require('../db/models/panier-schema');
+const User = require('../db/models/user-schema');
 
 async function CalculPrixTotal(panier) {
 
@@ -7,6 +8,7 @@ async function CalculPrixTotal(panier) {
 async function addPanier(panier) {
     try {
         let NewPanier = await Panier.create(panier);
+        await addUserToPanier(NewPanier);
 
         return ({    
             status: "success",
@@ -23,10 +25,16 @@ async function addPanier(panier) {
     }
 
 }
-
-async function getAllPanier() {
+async function addUserToPanier(panier)
+{
+    await User.updateMany(
+        { '_id':panier.idUser }, 
+        { $push: {  paniers: panier._id } }
+        );
+}
+async function getAllPanier(userId) {
     try {
-        let listePaniers = await Panier.find().populate("idOrder");
+        let listePaniers = await Panier.find({idUser:userId}).populate("idOrder");
         return ({
             status: "success",
             message: "All panisers", 
@@ -64,7 +72,10 @@ async function getOnePanier(id){
 async function updatePanier(id,panier) {
   
     try {
-        let updatedPanier = await Panier.findByIdAndUpdate(id, panier);
+        let oldPanier = await Panier.findByIdAndUpdate(id, panier);
+        let updatedPanier = await Product.findById(id);
+        await DelatePanierToUser (oldPanier);
+        await addUserToPanier(updatedPanier);
         return ({
             status: "success",
             message: "Panier updated successfully",
@@ -83,7 +94,9 @@ async function updatePanier(id,panier) {
 async function DeletePanier(id) {
   
     try {
+        let oldpanier = await Panier.findById(id);
         let deletedPanier = await Panier.deleteOne({_id:id});
+        await DelatePanierToUser(oldpanier);
         return ({ 
             status: "success",
             message: `Panier with _id=${id} has deleted`,
@@ -94,6 +107,13 @@ async function DeletePanier(id) {
         return ({ message:  `Error to delete Panier with _id=${id}`, payload: error });
     }
 
+}
+async function DelatePanierToUser(panier)
+{
+    await User.updateMany(
+        { '_id':panier.idUser }, 
+        { $pull : {  paniers: panier._id } }
+        );
 }
 module.exports =() => {
     return (

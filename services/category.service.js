@@ -21,7 +21,7 @@ async function addCategory(category) {
 
 async function getAllCategory() {
     try {
-        let listeCategorys = await Category.find().populate("products","-_id -__v -categories");
+        let listeCategorys = await Category.find().populate("products");
         return ({
             status: "success",
             message: "All categorys", 

@@ -10,7 +10,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter =require('./routes/products');
 const commandRouter =require('./routes/command');
+const panierRouter =require('./routes/panier');
 const marqueRouter =require('./routes/marque');
+const orderRouter =require('./routes/order');
+
 
 const categoryRouter =require('./routes/category');
 const pictureRouter =require('./routes/picture');
@@ -38,6 +41,11 @@ app.use('/products', productRouter);
 app.use('/command', commandRouter); 
 app.use('/marque', marqueRouter); 
 app.use('/category', categoryRouter);
+app.use('/panier', panierRouter);
+app.use('/order', orderRouter);
+
+
+
 app.use('/uploads', pictureRouter);
 app.use('/uploadsavatar', avatarRouter);
 app.use('/uploadsmarque', picturemarqueRouter);
