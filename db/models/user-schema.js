@@ -15,17 +15,14 @@ const UserSchema = new Schema({
     firstname: {
         type: String,
         trim: true,
-        required: [true, 'prenom est obligatoire!!'],
     },
     lastname: {
         type: String,
         trim: true,
-        required: [true, 'nom est obligatoire!!'],
     },
     email: {
         type: String,
         trim: true,
-        required: [true, 'email est obligatoire!!'],
         unique: 'Two users cannot share the same email ({VALUE})',
         lowercase: true,
         validate: [validateEmail, 'Please fill a valid email address'],
@@ -34,7 +31,6 @@ const UserSchema = new Schema({
     password: {
         type: String,
         trim: true,
-        required: [true, 'mot de passe et obligatoire']
     },
    phone: {
         type: String
